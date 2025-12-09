@@ -17,7 +17,7 @@ from sklearn.model_selection import cross_val_score, StratifiedKFold
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report, precision_score, recall_score, f1_score, roc_curve, roc_auc_score, RocCurveDisplay
 
 # Modern Custom CSS (prompted GPT to help me with the CSS styling, prompt was "please help me find a nice modern looking font and style the page to use LinkedIn Blue" )
-## using what they wrote, used the shell to tune what exactly I wanted from 
+## using what they wrote, used the shell to tune what exactly want the page to look like. 
 st.markdown("""
             
     <style>
@@ -35,11 +35,22 @@ st.markdown("""
         font-family: 'Inter', sans-serif;
     }
     
-    /* Main content area */
+    /* Main content area
+    want to add some animations
+    */
     .main {
         padding: 2rem 3rem;
         background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        animation : gradientShift 5s ease infinite;
     }
+    @keyframes graidentShift { 
+        0% {
+            background-position: 0% 50%;}  
+        50% {
+            background-position: 100% 50%;} 
+        100% {
+            background-position: 0% 50%;}   
+            }
     /* want to add smooth scrolling 
     This will make it so you can scroll smoothly without the page jumping or tearing
     */
@@ -143,15 +154,6 @@ st.markdown("""
         border: none;
         height: 2px;
         background: linear-gradient(90deg, transparent, #0A66C2, transparent);
-    }
-    
-    /* Card container */
-    .card {
-        background: white;
-        padding: 2rem;
-        border-radius: 15px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.07);
-        margin: 1rem 0;
     }
     
     </style>
