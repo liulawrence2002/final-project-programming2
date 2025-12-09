@@ -106,22 +106,22 @@ st.markdown("""
     /* Radio buttons */
     .stRadio > label {
         font-weight: 500;
-        color: #0A66C2;
+        color: #0A66C2 !important;
     }
     
     /* Slider */
     .stSlider > label {
         font-weight: 500;
-        color: #0A66C2;
+        color: #0A66C2 !important;
     }
     /* Still need to change the slider color to blue */
             
     .stSlider [data-baseweb = 'slider'] > div > div {
-            background-color: #e3f2fd; }
+            background-color: #e3f2fd !important; }
     .stSlider [data-baseweb = 'slider'] > div > div > div { 
-            background-color: #0A66C2; }
+            background-color: #0A66C2 !important; }
     .stSlider [data-baseweb = 'slider'][role = 'slider'] {
-            background-color = #0A66C2; border: 2px solid white !important; }
+            background-color = #0A66C2 !important; border: 2px solid white !important; }
     
     /* Info boxes */
     .element-container div[data-testid="stMarkdownContainer"] p {
