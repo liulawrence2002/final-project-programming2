@@ -304,7 +304,8 @@ X_train_simple , X_test_simple , y_train_simple , y_test_simple = train_test_spl
     features, 
     target_variables, 
     test_size= 0.20, 
-    random_state=42
+    random_state=42, 
+    stratify=target_variables
 )
 
 
@@ -313,7 +314,8 @@ X_train_advanced , X_test_advanced , y_train_advanced , y_test_advanced = train_
     features_advanced, 
     target_variables_advanced, 
     test_size= 0.20, 
-    random_state=42
+    random_state=42, 
+    stratify=target_variables_advanced
 )
 
 ## instatiate the simple logisitic regression model 
@@ -554,6 +556,7 @@ if page == 'Data Exploration & Model Creation':
         st.altair_chart(cm_test_fig)
     col1 , col2 = st.columns(2)
     with col1:
+        st.markdown('Advanced Model (KNN Imputation)')
         # Fit the pipeline
         knn_pipeline.fit(X_train_advanced, y_train_advanced)
 
@@ -568,7 +571,7 @@ if page == 'Data Exploration & Model Creation':
 
         # Plot ROC curve
         fig, ax = plt.subplots(figsize=(8, 6))  # ← Use fig, ax for Streamlit
-        ax.plot(fpr_adv, tpr_adv, color='#0A66C2', lw=2, label=f'ROC curve (AUC = {auc_score_adv:.3f})')  # ← FIXED variable name
+        ax.plot(fpr_adv, tpr_adv, color='#0A66C2', lw=2, label=f'ROC curve (AUC = {auc_score_adv:.3f})') 
         ax.plot([0, 1], [0, 1], color='gray', lw=1, linestyle='--', label='Random guess')
         ax.set_xlim([0.0, 1.0])
         ax.set_ylim([0.0, 1.05])
@@ -585,6 +588,7 @@ if page == 'Data Exploration & Model Creation':
 
         print(f"AUC Score: {auc_score_adv:.4f}")
     with col2:
+        st.markdown('Simple Model')
         # Fit the pipeline
         simple_lg.fit(X_train_simple, y_train_simple)
 
@@ -615,7 +619,7 @@ if page == 'Data Exploration & Model Creation':
         st.metric("AUC Score", f"{auc_score:.4f}")
 
         print(f"AUC Score: {auc_score:.4f}")
-
+    st.markdown('---')
 elif page == 'Make Predictions':
     
 
