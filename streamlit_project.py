@@ -421,7 +421,7 @@ if page == 'Data Exploration & Model Creation':
     st.markdown('## Key Insights')
     st.markdown('- Education is the Strongest Predictor: A one-unit increase in education level increases LinkedIn usage odds by 40%, confirming that more educated individuals actively seek professional opportunities on the platform.')
     st.markdown('- Income is Highly Influential: A one-unit increase in income increases LinkedIn usage odds by 35%, validating that higher-income professionals prioritize networking through LinkedIn.')
-    st.markdown('- Strong Model Performance: Low multicollinearity between predictors (confirmed via correlation matrix) enabled effective modeling, with our logistic regression achieving 0.76 percent classification accuracy.')
+    st.markdown('- Strong Model Performance: Low multicollinearity between predictors (confirmed via correlation matrix) enabled effective modeling, producing a logistic regression model achieving 0.76 ROC-AUC')
     st.markdown('---')
     st.altair_chart(dashboard , height = 900 , width = 900)
 
