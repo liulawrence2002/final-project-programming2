@@ -120,7 +120,7 @@ st.markdown("""
             background-color: #e3f2fd !important; }
     .stSlider [data-baseweb = 'slider'] > div > div > div { 
             background-color: #0A66C2 !important; }
-    .stSlider [data-baseweb = 'slider'][role = 'slider'] {
+    .stSlider > div > div > div > div[data-baseweb="slider"] > div:last-child > div {
             background-color = #0A66C2 !important; border: 2px solid white !important; }
     
     /* Info boxes */
