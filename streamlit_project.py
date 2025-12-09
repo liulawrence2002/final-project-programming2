@@ -183,8 +183,8 @@ sm_chart = alt.Chart(ss).mark_bar().encode(
     y=alt.Y('count()', title='Value Counts'),
     tooltip=['sm_li:N', 'count()']
 ).properties(
-    width=400,
-    height=400,
+    width=300,
+    height=300,
     title='LinkedIn User Distribution'
 )
 
@@ -194,7 +194,7 @@ sm_chart_income = alt.Chart(ss).mark_bar().encode(
     color=alt.Color('sm_li:N', legend=alt.Legend(title='LinkedIn User')),
     tooltip=['income:O', 'sm_li:N', 'count()']
 ).properties(
-    width=500,
+    width=300,
     height=300,
     title='LinkedIn Usage by Income Level'
 )
@@ -205,7 +205,7 @@ sm_chart_edu = alt.Chart(ss).mark_bar().encode(
     color=alt.Color('sm_li:N', legend=alt.Legend(title='LinkedIn User')),
     tooltip=['education:O', 'sm_li:N', 'count()']
 ).properties(
-    width=500,
+    width=300,
     height=300,
     title='LinkedIn Usage by Education Level'
 )
@@ -216,7 +216,7 @@ sm_chart_parent = alt.Chart(ss).mark_bar().encode(
     color=alt.Color('sm_li:N', legend=alt.Legend(title='LinkedIn User')),
     tooltip=['parent:O', 'sm_li:N', 'count()']
 ).properties(
-    width=500,
+    width=300,
     height=300,
     title='LinkedIn Usage by Parent Status'
 )
@@ -227,7 +227,7 @@ sm_chart_married = alt.Chart(ss).mark_bar().encode(
     color=alt.Color('sm_li:N', legend=alt.Legend(title='LinkedIn User')),
     tooltip=['married:O', 'sm_li:N', 'count()']
 ).properties(
-    width=250,
+    width=150,
     height=300,
     title='LinkedIn Usage by Marital Status'
 )
@@ -238,8 +238,8 @@ sm_chart_gender = alt.Chart(ss).mark_bar().encode(
     color=alt.Color('sm_li:N', legend=alt.Legend(title='LinkedIn User')),
     tooltip=['female:O', 'sm_li:N', 'count()']
 ).properties(
-    width=250,
-    height=300,
+    width=150,
+    height=500,
     title='LinkedIn Usage by Gender'
 )
 
@@ -250,7 +250,7 @@ sm_chart_age = alt.Chart(ss).mark_area().encode(
     xOffset='sm_li:N',
     tooltip=['age:Q', 'sm_li:N', 'count()']
 ).properties(
-    width=1000,
+    width=600,
     height=300,
     title='LinkedIn Usage by Age'
 )
@@ -438,7 +438,7 @@ if page == 'Data Exploration & Model Creation':
     st.markdown('- Correlation Matrix, reveals low multicollinearity between feature variables allowing for effective modelling')
     st.markdown('---')
     #st.altair_chart(dashboard , height = 900, width = 1500)
-    st.altair_chart(dashboard , use_container_width= True)
+    st.altair_chart(dashboard , height = 900 , width = 900)
 
     st.markdown('---')
 
