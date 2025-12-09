@@ -437,7 +437,9 @@ if page == 'Data Exploration & Model Creation':
     st.markdown('- People over 65 tend to use LinkedIn Less')
     st.markdown('- Correlation Matrix, reveals low multicollinearity between feature variables allowing for effective modelling')
     st.markdown('---')
-    st.altair_chart(dashboard , height = 900, width = 1500)
+    #st.altair_chart(dashboard , height = 900, width = 1500)
+    st.altair_chart(dashboard , use_container_width= True)
+
     st.markdown('---')
 
     st.markdown('LinkedIn Usage Correlation Matrix')
