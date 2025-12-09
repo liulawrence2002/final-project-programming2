@@ -239,7 +239,7 @@ sm_chart_gender = alt.Chart(ss).mark_bar().encode(
     tooltip=['female:O', 'sm_li:N', 'count()']
 ).properties(
     width=150,
-    height=500,
+    height=300,
     title='LinkedIn Usage by Gender'
 )
 
