@@ -18,6 +18,7 @@ from sklearn.metrics import accuracy_score, confusion_matrix, classification_rep
 
 # Modern Custom CSS (prompted GPT to help me with the CSS styling, prompt was "please help me find a nice modern looking font and style the page to use LinkedIn Blue" )
 st.markdown("""
+            
     <style>
     /* Import modern font */
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
@@ -29,9 +30,11 @@ st.markdown("""
     
     /* Main content area */
     .main {
-        padding: 2rem;
+        padding: 2rem 3rem;
         background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     }
+    /* want to add smooth scrolling */
+    *{ scroll-behavior: smooth;}
     
     /* Headers */
     h1 {
@@ -328,9 +331,9 @@ cv = StratifiedKFold(n_splits = 5 , shuffle = True , random_state=42)
 ## set up the pipeline for the advanced dataset
 
 knn_pipeline = Pipeline(steps = [ 
-    ("imputer" , KNNImputer(n_neighbors=5)),
-    ("scaler" , StandardScaler()),
-    ("model", LogisticRegression(class_weight='balanced' , max_iter=2500 , random_state=42))
+    ('imputer' , KNNImputer(n_neighbors=5)),
+    ('scaler' , StandardScaler()),
+    ('model', LogisticRegression(class_weight='balanced' , max_iter=2500 , random_state=42))
 ])
 
 scores_knn = cross_val_score(
@@ -394,7 +397,7 @@ page = st.sidebar.radio(
 )
 
 st.sidebar.markdown('---')
-st.sidebar.markdown(f"""
+st.sidebar.markdown(f'''
 ### Model Performance
 
 Simple Model (No NAs):
@@ -407,7 +410,7 @@ Advanced Model (KNN Imputation):
 - Precision on Test set: {precision_test * 100:.1f}%
 - Recall on Test set: {recall_test * 100:.1f}%
 - CV Score: {scores_knn.mean() * 100:.1f}% ± {scores_knn.std() * 100:.1f}%
-"""
+'''
 )
 
 if page == 'Data Exploration & Model Creation':
@@ -419,18 +422,18 @@ if page == 'Data Exploration & Model Creation':
         st.metric('Total Samples in Simple Model', f'{len(ss):,}')
     with col2_simple:
         linkedin_rate_simple = ss['sm_li'].mean() * 100
-        st.metric("LinkedIn Users", f"{linkedin_rate_simple:.1f}%")
+        st.metric('LinkedIn Users', f'{linkedin_rate_simple:.1f}%')
     with col3_simple:
-        st.metric("Features", "6")
+        st.metric('Features', '6')
     
     col1, col2, col3 = st.columns(3)
     with col1:
-        st.metric("Total Samples in KNN imputation model", f"{len(ss1):,}")
+        st.metric('Total Samples in KNN imputation model', f'{len(ss1):,}')
     with col2:
         linkedin_rate = ss1['sm_li'].mean() * 100
-        st.metric("LinkedIn Users", f"{linkedin_rate:.1f}%")
+        st.metric('LinkedIn Users', f'{linkedin_rate:.1f}%')
     with col3:
-        st.metric("Features", "6")
+        st.metric('Features', '6')
     st.markdown('---')
     st.markdown('## Key Insights')
     st.markdown('- Higher education and income levels were associated with increased LinkedIn usage')
@@ -709,12 +712,12 @@ elif page == 'Make Predictions':
             model_used = 'Advanced Model (KNN Impuation and Cross Validation)'
         st.markdown('---')
 
-        st.markdown(f"### Prediction Results ({model_used})")
+        st.markdown(f'### Prediction Results ({model_used})')
         
         if predictions == 1:
-            st.success("### You Are A LinkedIN User")
+            st.success('### You Are A LinkedIN User')
         else:
-            st.error("### You Are Not A LinkedIn User")
+            st.error('### You Are Not A LinkedIn User')
         ## provide metrics
         col_1 , col_2 = st.columns(2)
         with col_1:
