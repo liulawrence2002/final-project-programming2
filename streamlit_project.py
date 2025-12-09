@@ -115,9 +115,13 @@ st.markdown("""
         color: #0A66C2;
     }
     /* Still need to change the slider color to blue */
+            
     .stSlider [data-baseweb = 'slider'] > div > div {
             background-color: #e3f2fd }
-
+    .stSlider [data-baseweb = 'slider'] > div > div > div { 
+            background-color: #0A66C2 }
+    .stSlider [data-baseweb = 'slider'][role = 'slider'] {
+            backgroun-color = #0A66C2 }
     
     /* Info boxes */
     .element-container div[data-testid="stMarkdownContainer"] p {
