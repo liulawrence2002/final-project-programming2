@@ -41,9 +41,10 @@ st.markdown("""
     .main {
         padding: 2rem 3rem;
         background: linear-gradient(135deg, #f5f7fa, #c3cfe2, #e8f4f8, #d4e3f0);
+        background-size: 400% 400%;
         animation : gradientShift 5s ease infinite;
     }
-    @keyframes graidentShift { 
+    @keyframes gradientShift { 
         0% {
             background-position: 0% 50%;}  
         50% {
