@@ -631,57 +631,61 @@ elif page == 'Make Predictions':
     )
     st.markdown('---')
     st.markdown('### Please Enter Your Profile Information')
-    get_income = st.select_slider(
-        '### Income Level',
-        options = income_keys,
-        value = 5, 
-        format_func=dict(zip(income_keys, income_display)).get
-    )
-    st.markdown('---')
-    get_education = st.select_slider(
-        '### Education Level',
-        options = education_keys,
-        value = 5, 
-        format_func = dict(zip(education_keys, education_display)).get
-    )
+    col1_design , col2_design = st.columns(2)
+    with col1_design:
+        get_income = st.select_slider(
+            '### Income Level',
+            options = income_keys,
+            value = 5, 
+            format_func=dict(zip(income_keys, income_display)).get
+        )
+        st.markdown('---')
+        get_education = st.select_slider(
+            '### Education Level',
+            options = education_keys,
+            value = 5, 
+            format_func = dict(zip(education_keys, education_display)).get
+        )
 
-    st.markdown('---')
-    get_age = st.slider(
-        '### Age',
-        min_value = 18, 
-        max_value = 97,
-        value = 50, 
-        step = 1
-    )
+        st.markdown('---')
+        get_age = st.slider(
+            '### Age',
+            min_value = 18, 
+            max_value = 97,
+            value = 50, 
+            step = 1
+        )
 
-    st.markdown('---')
-    get_parent = st.radio(
-        '### Are you a Parent to a Child 18 or Younger?',
-        options = [0,1],
-        format_func= dict(zip(parent_keys , parent_display)).get,
-        horizontal = True
+        st.markdown('---')
+    
+    with col2_design:
+        get_parent = st.radio(
+            '### Are you a Parent to a Child 18 or Younger?',
+            options = [0,1],
+            format_func= dict(zip(parent_keys , parent_display)).get,
+            horizontal = True
 
-    )
-    st.markdown('---')
+        )
+        st.markdown('---')
 
-    get_married = st.radio(
-        '### Are You Married?',
-        options = [0,1],
-        format_func=dict(zip(married_keys, married_display)).get,
-        horizontal = True
+        get_married = st.radio(
+            '### Are You Married?',
+            options = [0,1],
+            format_func=dict(zip(married_keys, married_display)).get,
+            horizontal = True
 
-    )
+        )
 
-    st.markdown('---')
+        st.markdown('---')
 
-    get_gender = st.radio(
-        '### What is Your Gender?',
-        options = [0,1],
-        format_func= dict(zip(gender_keys, gender_display)).get,
-        horizontal = True
-    )
+        get_gender = st.radio(
+            '### What is Your Gender?',
+            options = [0,1],
+            format_func= dict(zip(gender_keys, gender_display)).get,
+            horizontal = True
+        )
 
-    st.markdown('---')
+        st.markdown('---')
     ## create the predict buttom 
     if st.button('## Predict LinkedIn Usage' , type = 'primary'):
         person_df = pd.DataFrame({
