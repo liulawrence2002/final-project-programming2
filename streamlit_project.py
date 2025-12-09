@@ -114,30 +114,14 @@ st.markdown("""
         font-weight: 500;
         color: #0A66C2 !important;
     }
-    /* Force all slider components to be blue */
-    div[data-baseweb="slider"] {
-        color: #0A66C2 !important;
-    }
-    
-    div[data-baseweb="slider"] * {
-        background-color: #0A66C2 !important;
-    }
-    
-    /* Slider track background */
-    div[data-baseweb="slider"] > div:nth-child(1) {
-        background: #e3f2fd !important;
-    }
-    
-    /* Slider thumb */
-    div[role="slider"] {
-        background-color: #0A66C2 !important;
-        border: 2px solid white !important;
-    }
-    
-    /* Remove any red/orange colors */
-    .stSlider * {
-        background-color: #0A66C2 !important;
-    }
+    /* Still need to change the slider color to blue */
+            
+    .stSlider [data-baseweb = 'slider'] > div > div {
+            background-color: #e3f2fd !important; }
+    .stSlider [data-baseweb = 'slider'] > div > div > div { 
+            background-color: #0A66C2 !important; }
+    .stSlider > div > div > div > div[data-baseweb="slider"] > div:last-child > div {
+            background-color = #0A66C2 !important; border: 2px solid white !important; }
     
     /* Info boxes */
     .element-container div[data-testid="stMarkdownContainer"] p {
