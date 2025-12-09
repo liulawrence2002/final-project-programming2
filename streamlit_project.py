@@ -17,13 +17,20 @@ from sklearn.model_selection import cross_val_score, StratifiedKFold
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report, precision_score, recall_score, f1_score
 
 # Modern Custom CSS (prompted GPT to help me with the CSS styling, prompt was "please help me find a nice modern looking font and style the page to use LinkedIn Blue" )
+## using what they wrote, used the shell to tune what exactly I wanted from 
 st.markdown("""
             
     <style>
-    /* Import modern font */
+    /* Import modern font (This will use the same font that LinkedIn Uses) 
+     Will get 4 different weights to determine the size of the font) */
+
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
     
-    /* Global styling */
+        
+    /* Global styling (this will make sure that all the text will be using this font)
+            
+    Adding the check to in case inter fails , san-serif will be used*/
+
     html, body, [class*="css"] {
         font-family: 'Inter', sans-serif;
     }
@@ -33,29 +40,29 @@ st.markdown("""
         padding: 2rem 3rem;
         background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     }
-    /* want to add smooth scrolling */
+    /* want to add smooth scrolling 
+    This will make it so you can scroll smoothly without the page jumping or tearing
+    */
     *{ scroll-behavior: smooth;}
     
     /* Headers */
     h1 {
         color: #0A66C2;
-        font-weight: 700;
         padding-bottom: 1rem;
         border-bottom: 3px solid #0A66C2;
     }
     
     h2 {
-        color: #2e3440;
-        font-weight: 600;
+        color: #0A66C2;
         margin-top: 2rem;
     }
     
     h3 {
-        color: #434c5e;
-        font-weight: 500;
+        color: #0A66C2;
     }
     
-    /* Sidebar styling */
+    /* Sidebar styling -- Make It a LinkedIn Blue Background */
+            
     [data-testid="stSidebar"] {
         background: linear-gradient(180deg, #0A66C2 0%, #004182 100%);
         padding: 2rem 1rem;
@@ -107,6 +114,10 @@ st.markdown("""
         font-weight: 500;
         color: #0A66C2;
     }
+    /* Still need to change the slider color to blue */
+    .stSlider [data-baseweb = 'slider'] > div > div {
+            background-color: #e3f2fd }
+
     
     /* Info boxes */
     .element-container div[data-testid="stMarkdownContainer"] p {
