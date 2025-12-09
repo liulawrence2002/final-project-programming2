@@ -14,7 +14,7 @@ from sklearn.impute import KNNImputer
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import cross_val_score, StratifiedKFold
-from sklearn.metrics import accuracy_score, confusion_matrix, classification_report, precision_score, recall_score, f1_score
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report, precision_score, recall_score, f1_score, roc_curve, roc_auc_score, RocCurveDisplay
 
 # Modern Custom CSS (prompted GPT to help me with the CSS styling, prompt was "please help me find a nice modern looking font and style the page to use LinkedIn Blue" )
 ## using what they wrote, used the shell to tune what exactly I wanted from 
@@ -370,36 +370,7 @@ recall_test = recall_score(y_test_advanced, y_pred_test)
 f1_test_simple = f1_score(y_test_advanced, y_pred_test)
 
 
-## making prediction predictors 
-
-## person 1 
-person1 = pd.DataFrame({
-    'income': [8],        # High income ($100k-$150k)
-    'education': [7],     # Some postgraduate schooling
-    'parent': [0],        # Not a parent
-    'married': [1],       # Married
-    'female': [1],        # Female
-    'age': [42]           # 42 years old
-})
-
-# Person 2: Same as Person 1 but 82 years old
-person2 = pd.DataFrame({
-    'income': [8],
-    'education': [7],
-    'parent': [0],
-    'married': [1],
-    'female': [1],
-    'age': [82]           # 82 years old
-})
-
-# Get predictions and probabilities
-pred1 = knn_pipeline.predict(person1)[0]
-prob1 = knn_pipeline.predict_proba(person1)[0]
-
-pred2 = knn_pipeline.predict(person2)[0]
-prob2 = knn_pipeline.predict_proba(person2)[0]
-
-st.sidebar.markdown('Navigation')
+st.sidebar.markdown('## Navigation')
 page = st.sidebar.radio(
     'Select Page:',
     ['Data Exploration & Model Creation', 'Make Predictions'],
@@ -581,6 +552,69 @@ if page == 'Data Exploration & Model Creation':
             title = 'Confusion Matrix for the Training Set '
         )
         st.altair_chart(cm_test_fig)
+    col1 , col2 = st.columns(2)
+    with col1:
+        # Fit the pipeline
+        knn_pipeline.fit(X_train_advanced, y_train_advanced)
+
+        # Get predicted probabilities (need probabilities for ROC, not just predictions)
+        y_pred_proba_adv = knn_pipeline.predict_proba(X_test_advanced)[:, 1]  # probability of class 1
+
+        # Calculate ROC curve
+        fpr_adv, tpr_adv, thresholds = roc_curve(y_test_advanced, y_pred_proba_adv)
+
+        # Calculate AUC score
+        auc_score_adv = roc_auc_score(y_test_advanced, y_pred_proba_adv)
+
+        # Plot ROC curve
+        fig, ax = plt.subplots(figsize=(8, 6))  # ← Use fig, ax for Streamlit
+        ax.plot(fpr_adv, tpr_adv, color='#0A66C2', lw=2, label=f'ROC curve (AUC = {auc_score_adv:.3f})')  # ← FIXED variable name
+        ax.plot([0, 1], [0, 1], color='gray', lw=1, linestyle='--', label='Random guess')
+        ax.set_xlim([0.0, 1.0])
+        ax.set_ylim([0.0, 1.05])
+        ax.set_xlabel('False Positive Rate')
+        ax.set_ylabel('True Positive Rate')
+        ax.set_title('ROC Curve')
+        ax.legend(loc='lower right')
+        ax.grid(True, alpha=0.3)
+    
+        st.pyplot(fig)  # ← Use st.pyplot() instead of plt.show()
+    
+        # Display AUC score
+        st.metric("AUC Score", f"{auc_score_adv:.4f}")
+
+        print(f"AUC Score: {auc_score_adv:.4f}")
+    with col2:
+        # Fit the pipeline
+        simple_lg.fit(X_train_simple, y_train_simple)
+
+        # Get predicted probabilities (need probabilities for ROC, not just predictions)
+        y_pred_proba = simple_lg.predict_proba(X_test_simple)[:, 1]  # probability of class 1
+
+        # Calculate ROC curve
+        fpr, tpr, thresholds = roc_curve(y_test_simple, y_pred_proba)
+
+        # Calculate AUC score
+        auc_score = roc_auc_score(y_test_simple, y_pred_proba)
+
+        # Plot ROC curve
+        fig1, ax1 = plt.subplots(figsize=(8, 6))  # ← Use fig, ax for Streamlit
+        ax1.plot(fpr, tpr, color='#0A66C2', lw=2, label=f'ROC curve (AUC = {auc_score:.3f})')  # ← FIXED variable name
+        ax1.plot([0, 1], [0, 1], color='gray', lw=1, linestyle='--', label='Random guess')
+        ax1.set_xlim([0.0, 1.0])
+        ax1.set_ylim([0.0, 1.05])
+        ax1.set_xlabel('False Positive Rate')
+        ax1.set_ylabel('True Positive Rate')
+        ax1.set_title('ROC Curve')
+        ax1.legend(loc='lower right')
+        ax1.grid(True, alpha=0.3)
+    
+        st.pyplot(fig1)  # ← Use st.pyplot() instead of plt.show()
+    
+        # Display AUC score
+        st.metric("AUC Score", f"{auc_score:.4f}")
+
+        print(f"AUC Score: {auc_score:.4f}")
 
 elif page == 'Make Predictions':
     
