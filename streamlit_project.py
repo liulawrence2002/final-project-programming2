@@ -16,6 +16,15 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import cross_val_score, StratifiedKFold
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report, precision_score, recall_score, f1_score, roc_curve, roc_auc_score, RocCurveDisplay
 
+
+
+## Create the Page, set up the sidebar
+st.set_page_config(
+    page_title = 'LinkedIn Usage Prediction Project' , 
+    layout= 'wide' ,
+    initial_sidebar_state= 'expanded'
+)
+
 # Modern Custom CSS (prompted GPT to help me with the CSS styling, prompt was "please help me find a nice modern looking font and style the page to use LinkedIn Blue" )
 ## using what they wrote, used the shell to tune what exactly want the page to look like. 
 st.markdown("""
@@ -157,12 +166,6 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-## Create the Page, set up the sidebar
-st.set_page_config(
-    page_title = 'LinkedIn Usage Prediction Project' , 
-    layout= 'wide' ,
-    initial_sidebar_state= 'expanded'
-)
 
 ## Read in the data then clean the data 
 s = pd.read_csv('social_media_usage.csv')
